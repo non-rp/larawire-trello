@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Boards\Create;
 use App\Livewire\Boards\Index;
 use App\Livewire\Boards\Show;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix' => 'boards'], function () {
     Route::get('/', Index::class)->name('boards.index');
+    Route::get('/create', Create::class)->name('boards.create');
     Route::get('/{board}', Show::class)->name('boards.show');
 })->middleware(['auth', 'verified']);
 
