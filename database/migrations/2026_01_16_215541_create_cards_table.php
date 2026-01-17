@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('board_id')->constrained()->cascadeOnDelete();
             $table->foreignId('group_id')->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
@@ -21,6 +22,9 @@ return new class extends Migration
             $table->string('title');
             $table->integer('sort')->default(999);
             $table->timestamps();
+
+            $table->index(['board_id', 'sort']);
+            $table->index(['group_id', 'sort']);
         });
     }
 

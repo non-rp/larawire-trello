@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Card extends Model
 {
-    protected $fillable = ['group_id', 'title', 'sort'];
+    protected $fillable = ['group_id', 'board_id', 'title', 'sort'];
     public function group(): belongsTo
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function board(): belongsTo
+    {
+        return $this->belongsTo(Board::class);
     }
 }
