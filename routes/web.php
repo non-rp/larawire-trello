@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Boards\Index;
+use App\Livewire\Boards\Show;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,5 +11,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::group(['prefix' => 'boards'], function () {
+    Route::get('/', Index::class)->name('boards.index');
+    Route::get('/{board}', Show::class)->name('boards.show');
+})->middleware(['auth', 'verified']);
+
+
 
 require __DIR__.'/settings.php';
